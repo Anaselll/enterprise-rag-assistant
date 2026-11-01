@@ -1,10 +1,10 @@
-from app.core.config import PDF_PATH , CHUNK_OVERLAP,CHUNK_SIZE,TOK_K,EMBEDDING_MODEL_NAME
+from app.core.config import PDF_PATH , CHUNK_OVERLAP,CHUNK_SIZE,TOK_K,EMBEDDING_MODEL_NAME,GROQ_MODEL_NAME
 from app.rag.loader import PDFLoader
 from app.rag.chunker import LangchainTextChunker
 from app.rag.vector_store import VectorStore
 from app.rag.embeddings import EmbeddingModel
 
-from langchain.agents import create_agent
+# from langchain.agents import create_agent
 from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 
@@ -24,7 +24,7 @@ class RAGEngine:
         self.vector_store=VectorStore(embeddings)
         self.vector_store.build(chunks)
 
-        self.llm=ChatGroq(model_name="llama-3.3-70b-versatile")
+        self.llm=ChatGroq(model_name=GROQ_MODEL_NAME)
     
 
     def generate_answer(self,question:str):
